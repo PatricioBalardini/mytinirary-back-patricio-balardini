@@ -1,6 +1,6 @@
 import City from "../../models/City.js";
 
-export default async (req, res) => {
+export default async (req, res, next) => {
   try {
     let oneCity = await City.findOne({ _id: req.params.id }).select(
       "name photo -_id"
@@ -11,10 +11,6 @@ export default async (req, res) => {
       response: oneCity,
     });
   } catch (err) {
-    return res.status(400).json({
-      success: false,
-      message: "not found",
-      response: null,
-    });
+    next(err)
   }
 };

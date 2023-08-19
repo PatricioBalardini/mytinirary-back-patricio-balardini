@@ -1,20 +1,24 @@
 import User from "../../models/User.js";
 
-export default async (req, res) => {
+export default async (req, res, next) => {
   try {
     let oneUser = await User.findOne({ _id: req.params.id }).select(
-      "mail photo -_id"
+      "name mail photo -_id"
     );
-    return res.status(200).json({
-      success: true,
-      message: "user found",
-      response: oneUser,
-    });
+    if (oneUser) {
+      return res.status(200).json({
+        success: true,
+        message: "user found",
+        response: oneUser,
+      });
+    } else{
+      return res.status(404).json({
+        success: false,
+        message: "user not found",
+        response: null
+      })
+    }
   } catch (err) {
-    return res.status(400).json({
-      success: false,
-      message: "not found",
-      response: null,
-    });
+    next(err);
   }
 };
