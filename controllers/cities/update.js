@@ -1,6 +1,6 @@
 import City from "../../models/City.js";
 
-export default async (req, res) => {
+export default async (req, res, next) => {
   try {
     let updateCity = await City.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -11,10 +11,6 @@ export default async (req, res) => {
       response: updateCity,
     });
   } catch (err) {
-    return res.status(400).json({
-      success: false,
-      message: "not update",
-      response: null,
-    });
+    next(err);
   }
 };
