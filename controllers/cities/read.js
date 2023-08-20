@@ -15,7 +15,7 @@ export default async (req, res, next) => {
     }
     let allCities = await City.find(
       searchObject,
-      "country city description -_id"
+      "-_id"
     )
       .populate("admin_id", "name mail photo -_id")
       .sort(orderingObject);
