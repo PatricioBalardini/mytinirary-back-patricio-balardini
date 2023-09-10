@@ -9,7 +9,7 @@ export default async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: "cities to show on carousel",
-      data_carousel: all,
+      dataCarousel: all,
       count,
     });
   } catch (err) {
