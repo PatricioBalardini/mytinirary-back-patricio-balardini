@@ -8,7 +8,7 @@ export default async (req, res, next) => {
       message: "city deleted",
       response: deleteCity._id,
     });
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };

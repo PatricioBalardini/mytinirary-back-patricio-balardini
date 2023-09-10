@@ -1,4 +1,4 @@
-import City from "../../models/City.js";
+import Itinerarie from "../../models/Itinerarie.js";
 
 export default async (req, res, next) => {
   try {
@@ -29,7 +29,7 @@ export default async (req, res, next) => {
         response: null,
       });
     }
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    next(err);
   }
 };
