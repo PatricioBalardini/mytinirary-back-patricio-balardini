@@ -8,8 +8,6 @@ export default async (req, res, next) => {
       queries.city_id = req.query.city_id;
     }
     let all = await Itinerary.find(
-      // queries,
-      // "-__v -createdAt -updatedAt"
       { city_id: req.query.city_id }
     ).populate({
       path: "city_id",
