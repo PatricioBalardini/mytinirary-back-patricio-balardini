@@ -13,7 +13,7 @@ export default async (req, res) => {
   } catch (err) {
     return res.status(400).json({
       success: false,
-      message: "not update",
+      message: "user not update",
       response: null,
     });
   }

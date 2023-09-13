@@ -3,7 +3,7 @@ import City from "../../models/City.js";
 export default async (req, res, next) => {
   try {
     let all = await City.find({}, "city photo country")
-      .sort({ fundation: 1 })
+      .sort({ fundation: -1 })
       .limit(12);
     let count = await City.countDocuments();
     return res.status(200).json({
@@ -12,7 +12,7 @@ export default async (req, res, next) => {
       dataCarousel: all,
       count,
     });
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
