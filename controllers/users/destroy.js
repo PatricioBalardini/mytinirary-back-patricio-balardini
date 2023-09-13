@@ -8,10 +8,10 @@ export default async (req, res) => {
       message: "user deleted",
       response: deleteUser._id,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(400).json({
       success: false,
-      message: "not deleted",
+      message: "user not deleted",
       response: null,
     });
   }

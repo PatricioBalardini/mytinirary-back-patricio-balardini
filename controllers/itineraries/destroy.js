@@ -1,18 +1,18 @@
-import City from "../../models/City.js";
+import Itinerary from "../../models/Itinerary.js";
 
 export default async (req, res, next) => {
   try {
-    let city = await City.findOne({ _id: req.params.id }).select("");
-    if (city) {
+    let deleteItinerary = await Itinerary.findByIdAndDelete(req.params.id);
+    if (deleteItinerary) {
       return res.status(200).json({
         success: true,
-        message: "city found",
-        response: city,
+        message: "itinerary deleted",
+        response: deleteItinerary._id,
       });
     } else {
       return res.status(404).json({
         success: false,
-        message: "city not found",
+        message: "itinerary not found",
         response: null,
       });
     }

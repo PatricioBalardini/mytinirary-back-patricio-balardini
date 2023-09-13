@@ -8,10 +8,10 @@ export default async (req, res) => {
       message: "user crated",
       response: newUser._id,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(400).json({
       success: false,
-      message: "not create",
+      message: "user not create",
       response: null,
     });
   }

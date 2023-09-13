@@ -1,35 +1,30 @@
-import Itinerarie from "../../models/Itinerarie.js";
+import Itinerary from "../../models/Itinerary.js";
 
 export default async (req, res, next) => {
   try {
-    let searchObject = {};
-    let orderingObject = {};
-    if (req.query.admin_id) {
-      searchObject.admin_id = req.query.admin_id;
+    let queries = {};
+    console.log(req.query);
+    if (req.query.city_id) {
+      queries.city_id = req.query.city_id;
     }
-    if (req.query.city) {
-      searchObject.city = new RegExp(req.query.city, "i");
-    }
-    if (req.query.sort) {
-      orderingObject.city = req.query.sort;
-    }
-    let allCities = await City.find(searchObject)
-      .populate("admin_id", "name mail photo _id")
-      .sort(orderingObject);
-    if (allCities.length > 0) {
-      return res.status(200).json({
-        success: true,
-        message: "cities found",
-        response: allCities,
-      });
-    } else {
-      return res.status(400).json({
-        success: false,
-        message: "not found",
-        response: null,
-      });
-    }
-  } catch (err) {
-    next(err);
+    let all = await Itinerary.find(
+      // queries,
+      // "-__v -createdAt -updatedAt"
+      { city_id: req.query.city_id }
+    ).populate({
+      path: "city_id",
+      select: "city photo admin_id",
+      populate: {
+        path: "admin_id",
+        select: "name",
+      },
+    });
+    return res.status(200).json({
+      success: true,
+      message: "itineraries found",
+      response: all,
+    });
+  } catch (error) {
+    next(error);
   }
 };

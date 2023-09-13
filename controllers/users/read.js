@@ -8,10 +8,10 @@ export default async (req, res) => {
       message: "users found",
       response: allUsers,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(400).json({
       success: false,
-      message: "not found",
+      message: "useres not found",
       response: null,
     });
   }
