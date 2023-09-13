@@ -10,7 +10,6 @@ import notExistsUser from "../middlewares/notExistsUser.js";
 import isValidPass from "../middlewares/isValidPass.js";
 import existsUser from "../middlewares/existsUser.js";
 import validator from "../middlewares/validator.js";
-
 import registerSchema from "../schemas/register.js";
 import signInSchema from "../schemas/signIn.js";
 import updatePassHash from "../middlewares/updatePassHash.js";
